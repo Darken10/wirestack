@@ -1,28 +1,107 @@
-# Wirestack UI
+<p align="center">
+  <img src="logo.svg" alt="Wirestack UI" width="720" />
+</p>
 
-[![Latest Version on Packagist](https://img.shields.io/packagist/v/darken10/wirestack.svg?style=flat-square)](https://packagist.org/packages/darken10/wirestack)
-[![PHP Version](https://img.shields.io/badge/PHP-8.2%2B-blue?style=flat-square)](https://www.php.net)
-[![Laravel](https://img.shields.io/badge/Laravel-11%2B%20%7C%2012-red?style=flat-square)](https://laravel.com)
-[![Livewire](https://img.shields.io/badge/Livewire-4.x-purple?style=flat-square)](https://livewire.laravel.com)
-[![License](https://img.shields.io/packagist/l/darken10/wirestack.svg?style=flat-square)](LICENSE.md)
+<h1 align="center">Wirestack UI</h1>
 
-**Système de design complet pour Laravel & Livewire 4.** 70+ composants Blade prêts à l'emploi, 5 composants Livewire interactifs, mode sombre natif, design tokens personnalisables — propulsé par Tailwind CSS v4 et Alpine.js.
+<p align="center">
+  Système de design complet pour <strong>Laravel & Livewire 4</strong><br>
+  70+ composants Blade · 5 composants Livewire · Tailwind CSS v4 · Mode sombre natif
+</p>
+
+<p align="center">
+  <a href="https://packagist.org/packages/darken10/wirestack">
+    <img src="https://img.shields.io/packagist/v/darken10/wirestack.svg?style=flat-square" alt="Version Packagist">
+  </a>
+  <a href="https://www.php.net">
+    <img src="https://img.shields.io/badge/PHP-8.2%2B-blue?style=flat-square" alt="PHP 8.2+">
+  </a>
+  <a href="https://laravel.com">
+    <img src="https://img.shields.io/badge/Laravel-11%2B%20%7C%2012-red?style=flat-square" alt="Laravel">
+  </a>
+  <a href="https://livewire.laravel.com">
+    <img src="https://img.shields.io/badge/Livewire-4.x-purple?style=flat-square" alt="Livewire 4">
+  </a>
+  <a href="LICENSE.md">
+    <img src="https://img.shields.io/packagist/l/darken10/wirestack.svg?style=flat-square" alt="Licence MIT">
+  </a>
+</p>
 
 ---
 
-## Installation rapide
+## À propos
+
+**Wirestack UI** est un système de design clé en main pour les applications Laravel & Livewire. Il fournit une bibliothèque de composants cohérents, accessibles et entièrement personnalisables, propulsés par **Tailwind CSS v4** et **Alpine.js**.
+
+- **70+ composants Blade** — boutons, formulaires, cartes, navigation, tableaux, modales…
+- **5 composants Livewire** — Modal, Drawer, Toast, DataTable, CommandPalette
+- **Design tokens** — personnalisation globale via variables CSS sans toucher aux composants
+- **Mode sombre natif** — prise en charge complète light / dark / system
+- **Auto-découverte** — aucune configuration manuelle du service provider
+
+---
+
+## Installation
 
 ```bash
 composer require darken10/wirestack
 ```
 
-Voir le [guide d'installation complet](docs/installation.md) pour la configuration des assets, directives Blade et composants Livewire globaux.
+> Le service provider est auto-découvert par Laravel. Aucune déclaration manuelle n'est nécessaire.
+
+Consultez le **[guide d'installation complet →](docs/installation.md)** pour configurer les assets CSS, les directives Blade et les composants Livewire globaux.
+
+---
+
+## Démarrage rapide
+
+Ajoutez les directives dans votre layout principal :
+
+```blade
+<!DOCTYPE html>
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    @wsStyles
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
+</head>
+<body>
+
+    {{ $slot }}
+
+    <livewire:ws::toast />
+
+    @wsScripts
+</body>
+</html>
+```
+
+Puis utilisez les composants dans vos vues :
+
+```blade
+<x-ws::button variant="solid" color="primary" icon="plus">
+    Créer un projet
+</x-ws::button>
+
+<x-ws::alert color="success" dismissible>
+    Vos modifications ont été enregistrées.
+</x-ws::alert>
+
+<x-ws::card variant="elevated">
+    <x-ws::card-header title="Tableau de bord" />
+    <x-ws::card-body>
+        Contenu de la carte...
+    </x-ws::card-body>
+</x-ws::card>
+```
 
 ---
 
 ## Documentation
 
-| Sujet                 | Fichier                                          |
+| Sujet                 | Lien                                             |
 | --------------------- | ------------------------------------------------ |
 | Installation          | [docs/installation.md](docs/installation.md)     |
 | Configuration         | [docs/configuration.md](docs/configuration.md)   |
@@ -33,19 +112,19 @@ Voir le [guide d'installation complet](docs/installation.md) pour la configurati
 
 ### Composants Blade
 
-| Catégorie                                 | Fichier                                                            |
+| Catégorie                                 | Documentation                                                      |
 | ----------------------------------------- | ------------------------------------------------------------------ |
-| Atomes (Button, Badge, Avatar…)           | [docs/components/atoms.md](docs/components/atoms.md)               |
-| Formulaires (Input, Select, Toggle…)      | [docs/components/forms.md](docs/components/forms.md)               |
-| Mise en page (Card, Container, Stack…)    | [docs/components/layout.md](docs/components/layout.md)             |
-| Navigation (Breadcrumb, Pagination, Nav…) | [docs/components/navigation.md](docs/components/navigation.md)     |
-| Feedback (Alert, Progress, Skeleton…)     | [docs/components/feedback.md](docs/components/feedback.md)         |
-| Données (Table, Stat, Timeline, Code…)    | [docs/components/data-display.md](docs/components/data-display.md) |
-| Interactifs Alpine.js (Dropdown, Tabs…)   | [docs/components/interactive.md](docs/components/interactive.md)   |
+| Atomes — Button, Badge, Avatar, Spinner…  | [docs/components/atoms.md](docs/components/atoms.md)               |
+| Formulaires — Input, Select, Toggle…      | [docs/components/forms.md](docs/components/forms.md)               |
+| Mise en page — Card, Container, Stack…    | [docs/components/layout.md](docs/components/layout.md)             |
+| Navigation — Breadcrumb, Pagination, Nav… | [docs/components/navigation.md](docs/components/navigation.md)     |
+| Feedback — Alert, Progress, Skeleton…     | [docs/components/feedback.md](docs/components/feedback.md)         |
+| Données — Table, Stat, Timeline, Code…    | [docs/components/data-display.md](docs/components/data-display.md) |
+| Interactifs — Dropdown, Tabs, Accordion…  | [docs/components/interactive.md](docs/components/interactive.md)   |
 
 ### Composants Livewire
 
-| Composant      | Fichier                                                              |
+| Composant      | Documentation                                                        |
 | -------------- | -------------------------------------------------------------------- |
 | Modal          | [docs/livewire/modal.md](docs/livewire/modal.md)                     |
 | Drawer         | [docs/livewire/drawer.md](docs/livewire/drawer.md)                   |
@@ -57,16 +136,22 @@ Voir le [guide d'installation complet](docs/installation.md) pour la configurati
 
 ## Prérequis
 
-| Dépendance   | Version minimum        |
+| Dépendance   | Version minimale       |
 | ------------ | ---------------------- |
-| PHP          | 8.2                    |
-| Laravel      | 11.0 ou 12.0           |
-| Livewire     | 4.0                    |
-| Tailwind CSS | v4 (recommandé)        |
+| PHP          | 8.2+                   |
+| Laravel      | 11.x ou 12.x           |
+| Livewire     | 4.x                    |
+| Tailwind CSS | v4                     |
 | Alpine.js    | inclus avec Livewire 4 |
+
+---
+
+## Contribuer
+
+Les contributions sont les bienvenues. Merci de consulter [CHANGELOG.md](CHANGELOG.md) pour l'historique des versions et d'ouvrir une issue avant de soumettre une pull request majeure.
 
 ---
 
 ## Licence
 
-MIT — voir [LICENSE.md](LICENSE.md).
+Wirestack UI est un logiciel open-source distribué sous licence **MIT**. Voir [LICENSE.md](LICENSE.md).
